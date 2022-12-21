@@ -39,8 +39,6 @@ public class WaresImpl implements WaresDao {
     ps.execute();
     ps.close();
     conn.close();
-    ps.close();
-    conn.close();
     return result;
   }
   

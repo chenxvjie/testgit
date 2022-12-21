@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -65,6 +66,12 @@ public class servlet_userdl extends HttpServlet {
 	    session.setAttribute("user", id);
 	    session.setAttribute("cus_dl_result", cus_dl_result);
 	    if (cus_dl_result.equals("登录成功")) {
+	    	try {
+				temple=bl.selectbuyerid(id);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	      session.setAttribute("cus", temple);
 	      session.setAttribute("cus_dl_result", null); 
 	      request.getRequestDispatcher("servlet_cusjl").forward(request, response);

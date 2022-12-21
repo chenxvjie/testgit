@@ -46,18 +46,21 @@ public class servlet_cuszc extends HttpServlet {
 	    String name = request.getParameter("cusname");
 	    String phone = request.getParameter("cusphone");
 	    String address = request.getParameter("cusaddress");
+	    String sex="man";
 	    Buyer by = new Buyer();
 	    by.setBuyerid(id);
 	    by.setBuyerpw(pwd);
 	    by.setBuyername(name);
 	    by.setBuyerphone(phone);
 	    by.setBuyeraddress(address);
+	    by.setBuyersex(sex);
 	    BuyerImpl bi =new BuyerImpl();
 	    try {
 	      bi.insertbuyer(by);
 	    } catch (SQLException e) {
 	      e.printStackTrace();
 	    }
+	    System.out.println(by);
 	    HttpSession session = request.getSession();
 	    session.setAttribute("zhuce_result", "注册成功");
 	    request.getRequestDispatcher("cus_login1.jsp").forward(request, response);

@@ -2,6 +2,8 @@ package com.impl;
 
 import com.dao.BuyerDao;
 import com.vo.Buyer;
+import com.vo.historyorder;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,15 +26,18 @@ public class BuyerImpl implements BuyerDao {
   
   public Buyer insertbuyer(Buyer b) throws SQLException {
     Connection conn = getConnection();
-    String sql = "insert into buyer(buyername,buyerid,buyerpw) values(?,?,?)";
+    String sql = "insert into buyer(buyername,buyerid,buyerpw,buyeraddress,buyerphone,buyersex) values(?,?,?,?,?,?)";
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setString(1, b.getBuyername());
     ps.setString(2, b.getBuyerid());
     ps.setString(3, b.getBuyerpw());
+    ps.setString(4, b.getBuyeraddress());
+    ps.setString(5,b.getBuyerphone());
+    ps.setString(6, b.getBuyersex());
     ps.execute();
     ps.close();
     conn.close();
-    return null;
+    return b;
   }
   
   public void updatebuyer(Buyer b) throws SQLException {
@@ -68,5 +73,26 @@ public class BuyerImpl implements BuyerDao {
 	    stat.close();
 	    conn.close();
 	    return asd;
+	  }
+  public Buyer selectbuyerid(String buyerid) throws SQLException {
+	    Connection conn = getConnection();
+	    String sql = "select * from buyer where buyerid=?";
+	    PreparedStatement ps = conn.prepareStatement(sql);
+	    ps.setString(1,buyerid);
+	    ResultSet rs = ps.executeQuery();
+	    Buyer buyer = null;
+	    while (rs.next()) {
+	      buyer = new Buyer();
+	      buyer.setBuyername(rs.getString(1));
+	      buyer.setBuyerid(rs.getString(2));
+	      buyer.setBuyerpw(rs.getString(3));
+	      buyer.setBuyeraddress(rs.getString(4));
+	      buyer.setBuyerphone(rs.getString(5));
+	      buyer.setBuyersex(rs.getString(6));
+	    } 
+	    rs.close();
+	    ps.close();
+	    conn.close();
+	    return buyer;
 	  }
 }

@@ -42,6 +42,7 @@ public class DbConfig {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		String URL="jdbc:sqlite:"+dbFilePath;
 		System.out.println("URL"+URL);
 		conn = DriverManager.getConnection(URL);
@@ -112,5 +113,8 @@ public class DbConfig {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+=======
+		return DriverManager.getConnection(URL);
+>>>>>>> upstream/dev
 	}
 }

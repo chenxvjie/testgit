@@ -38,15 +38,18 @@ if(result!=null){%>
     <a class="us_a" href="admin_waresup.jsp">上传商品</a>
     <a class="us_a" href="servlet_tcdl">退出登录</a>
     <hr />
+<<<<<<< HEAD
     <c:if test="${not empty sessionScope.ware_list}">
     <%--Wares w=(Wares)session.getAttribute("ware");
 	int id=w.getWaresid(); --%>
+=======
+    <c:if test="${not empty sessionScope.ware}">
+    <%Wares w=(Wares)session.getAttribute("ware");
+	int id=w.getWaresid(); %>
+>>>>>>> upstream/dev
     <%
-	List<Wares> ware_list= (List<Wares>)session.getAttribute("ware_list");
-    for(int i=0;i<ware_list.size();i++){
-    	Wares w=ware_list.get(i);
-    	int id=w.getWaresid();
-	%>
+	List<Wares> asd= new ArrayList<Wares>();
+	asd=(List<Wares>)session.getAttribute("yhspxx");%>
 	<div class="spxq1">
         <div class="spxq1_1">
             <img style="width: 100%;height:100%;" src="upload1/<%= w.getWarespicture()%>">
@@ -90,31 +93,15 @@ if(result!=null){%>
 	<%	
 		List<Order> asd_nochoose= new ArrayList<Order>();
 		List<Order> asd_choose= new ArrayList<Order>();
-		List<Order> asd_nochoose2= new ArrayList<Order>();
-		List<Order> asd_choose2= new ArrayList<Order>();
-		asd_nochoose2=(List<Order>)session.getAttribute("asd_nochoose");
-		asd_choose2=(List<Order>)session.getAttribute("asd_choose");
-		asd_nochoose.clear();
-		asd_choose.clear();
-		for(Order o:asd_nochoose2){
-			if(o.getWaresid()==w.getWaresid()){
-				asd_nochoose.add(o);
-			}
-		}
-		for(Order o:asd_choose2){
-			if(o.getWaresid()==w.getWaresid()){
-				asd_choose.add(o);
-			}
-		}
-		
+		asd_nochoose=(List<Order>)session.getAttribute("asd_nochoose");
+		asd_choose=(List<Order>)session.getAttribute("asd_choose");
 		Iterator it1=asd_nochoose.iterator();
 		Order qwe=null;
 		
 		Iterator it2=asd_choose.iterator();
 		while(it2.hasNext()){
 			qwe=new Order();
-			qwe=(Order)it2.next();
-			%>
+			qwe=(Order)it2.next();%>
 				<tr>
 					<td><%=qwe.getOrderid() %></td>
 					<td><%=qwe.getWaresid() %></td>
@@ -141,8 +128,12 @@ if(result!=null){%>
 		}
 		while(it1.hasNext()){
 			qwe=new Order();
+<<<<<<< HEAD
 			qwe=(Order)it1.next();
 			%>
+=======
+			qwe=(Order)it1.next();%>
+>>>>>>> upstream/dev
 				<tr>
 					<td><%=qwe.getOrderid() %></td>
 					<td><%=qwe.getWaresid() %></td>
@@ -165,9 +156,12 @@ if(result!=null){%>
 		}
 	%>
 </table>
-<%} %>
 </c:if>
+<<<<<<< HEAD
 <c:if test="${empty sessionScope.ware_list}">
+=======
+<c:if test="${empty sessionScope.ware}">
+>>>>>>> upstream/dev
 <h1 style="text-align:center;">暂无出售商品</h1>
 </c:if>
 </c:if>

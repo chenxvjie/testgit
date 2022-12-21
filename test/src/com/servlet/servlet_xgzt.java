@@ -84,6 +84,7 @@ public class servlet_xgzt extends HttpServlet {
 			    } 
 	    }
 	    else if(type.equals("下架")){
+	    	w.setWaresstate("remove");
 	    	order.setOrderstate("已完成");
 	    	order_result="订单已完成";
 	    	hisor.setResult("交易成功");

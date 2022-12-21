@@ -16,7 +16,7 @@ if(result!=null){%>
 <link rel="stylesheet" href="zhuce.css">
 </head>
 
-<body class="bodydelu">
+<body class="allbody">
 <a class="us_a" href="admin_login.jsp">返回</a>
     <div class="box">
         <div class="left"></div>

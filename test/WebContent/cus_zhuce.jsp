@@ -13,9 +13,9 @@ if(result!=null){%>
 	<%session.setAttribute("zhuce_result", null);
 }%>
 </script>
-<link rel="stylesheet" href="zhuce.css">
+<link rel="stylesheet" href="denglu.css">
 </head>
-<body class="bodydelu">
+<body class="allbody">
 <a class="us_a" href="admin_login.jsp">返回</a>
     <div class="box">
         <div class="left"></div>

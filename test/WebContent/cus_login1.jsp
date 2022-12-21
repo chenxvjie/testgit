@@ -38,7 +38,7 @@ if(result!=null){%>
             </form>
             <div class="fn">
                 <a href="cus_zhuce.jsp">注册账号</a>
-              
+              	<a href="cus_shop.jsp">返回商城</a>
             </div>
         </div>
     </div>

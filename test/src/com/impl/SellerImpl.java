@@ -19,7 +19,9 @@ public class SellerImpl implements SellerDao {
 	      conn =new DbConfig().dbConfig();
 	    } catch (SQLException e) {
 	      e.printStackTrace();
+	      System.out.println("连接失败");
 	    } 
+	    System.out.println("正在获取连接");
 	    return conn;
 	  }
   
@@ -59,7 +61,7 @@ public class SellerImpl implements SellerDao {
   
   public Seller sellerlogin(Seller s) throws SQLException {
     Connection conn = getConnection();
-    String sql = "select sellerid,sellerpw from seller";
+    String sql = "select (sellerid,sellerpw) from seller";
     PreparedStatement ps = conn.prepareStatement(sql);
     ps.setString(1, s.getSellerid());
     ps.setString(2, s.getSellerpw());
@@ -76,8 +78,9 @@ public class SellerImpl implements SellerDao {
   }
   
   public List<Seller> selectsellerpw() throws SQLException {
+	Connection conn = getConnection();
+	System.out.println("连接成功");
     String sql = "select * from seller";
-    Connection conn = getConnection();
     Statement stat = conn.createStatement();
     ResultSet rs = stat.executeQuery(sql);
     List<Seller> asd = new ArrayList<>();

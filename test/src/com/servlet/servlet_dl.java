@@ -65,11 +65,7 @@ public class servlet_dl extends HttpServlet {
 	    List<Seller> asd = new ArrayList<>();
 	    try {
 			asd=sel.selectsellerpw();
-<<<<<<< HEAD
-			//System.out.println("size"+asd.size());
-=======
 			System.out.println("size"+asd.size());
->>>>>>> upstream/dev
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}

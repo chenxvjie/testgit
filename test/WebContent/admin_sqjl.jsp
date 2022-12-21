@@ -34,20 +34,13 @@ if(result!=null){%>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_yhspxx">商品预览</a>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_spxx">商品记录</a>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_jl">申请记录</a>
-    <a class="us_a" href="<%=request.getContextPath()%>/servlet_admin_cus">用户信息</a>
     <a class="us_a" href="admin_change.jsp">修改密码</a>
     <a class="us_a" href="admin_waresup.jsp">上传商品</a>
     <a class="us_a" href="servlet_tcdl">退出登录</a>
     <hr />
-<<<<<<< HEAD
     <c:if test="${not empty sessionScope.ware_list}">
     <%--Wares w=(Wares)session.getAttribute("ware");
 	int id=w.getWaresid(); --%>
-=======
-    <c:if test="${not empty sessionScope.ware}">
-    <%Wares w=(Wares)session.getAttribute("ware");
-	int id=w.getWaresid(); %>
->>>>>>> upstream/dev
     <%
 	List<Wares> ware_list= (List<Wares>)session.getAttribute("ware_list");
     for(int i=0;i<ware_list.size();i++){
@@ -148,12 +141,8 @@ if(result!=null){%>
 		}
 		while(it1.hasNext()){
 			qwe=new Order();
-<<<<<<< HEAD
 			qwe=(Order)it1.next();
 			%>
-=======
-			qwe=(Order)it1.next();%>
->>>>>>> upstream/dev
 				<tr>
 					<td><%=qwe.getOrderid() %></td>
 					<td><%=qwe.getWaresid() %></td>
@@ -178,11 +167,7 @@ if(result!=null){%>
 </table>
 <%} %>
 </c:if>
-<<<<<<< HEAD
 <c:if test="${empty sessionScope.ware_list}">
-=======
-<c:if test="${empty sessionScope.ware}">
->>>>>>> upstream/dev
 <h1 style="text-align:center;">暂无出售商品</h1>
 </c:if>
 </c:if>

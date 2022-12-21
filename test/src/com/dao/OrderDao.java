@@ -7,6 +7,6 @@ import java.util.List;
 public interface OrderDao {
   void insertorder(Order paramOrder) throws SQLException;
   Order fullorder(Order paramOrder) throws SQLException;
-  List<Order> selectorder(int wid) throws SQLException;
+  List<Order> selectorder() throws SQLException;
   List<Order> selectorderbuyerid(String buyerid) throws SQLException;
 }

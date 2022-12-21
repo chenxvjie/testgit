@@ -20,7 +20,9 @@ public class test2
 	      conn =new DbConfig().dbConfig();
 	    } catch (SQLException e) {
 	      e.printStackTrace();
+	      System.out.println("连接失败");
 	    } 
+	    System.out.println("连接成功");
 	    return conn;
 	  }
 	public List<Seller> selectsellerpw() throws SQLException {

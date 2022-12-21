@@ -64,7 +64,7 @@ public class servlet_jl extends HttpServlet {
 	    	ware_list = war.selectwares();
 	    } catch (Exception exception) {}
 	    try {
-	      asd = ord.selectorder(w.getWaresid());
+	      asd = ord.selectorder();
 	    } catch (Exception exception) {}
 	    List<Order> asd_nochoose = new ArrayList<>();
 	    List<Order> asd_choose = new ArrayList<>();

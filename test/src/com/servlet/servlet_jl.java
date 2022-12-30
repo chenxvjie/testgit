@@ -59,22 +59,10 @@ public class servlet_jl extends HttpServlet {
 	    List<Order> asd = new ArrayList<>();
 	    HttpSession session = request.getSession();
 	    WaresImpl war = new WaresImpl();
-	    List<Wares> asd1 = new ArrayList<>();
+	    List<Wares> ware_list = new ArrayList<>();
 	    try {
-	      asd1 = war.selectwares();
+	    	ware_list = war.selectwares();
 	    } catch (Exception exception) {}
-	    Wares w = new Wares();
-	    w=null;
-	    for(int i=0;i<asd1.size();i++) {
-	    	if(asd1.get(i).getWaresstate().equals("remove")) {
-	    		session.setAttribute("ware", w);
-	    	}
-	    	else {
-	    		w=asd1.get(i);
-	    		session.setAttribute("ware", w);
-	    		break;
-	    	}
-	    }
 	    try {
 	      asd = ord.selectorder();
 	    } catch (Exception exception) {}
@@ -88,6 +76,7 @@ public class servlet_jl extends HttpServlet {
 	    	}
 	    }
 	    System.out.print(asd);
+	    session.setAttribute("ware_list", ware_list);
 	    session.setAttribute("asd_nochoose", asd_nochoose);
 	    session.setAttribute("asd_choose", asd_choose);
 	    request.getRequestDispatcher("admin_sqjl.jsp").forward((ServletRequest)request, (ServletResponse)response);

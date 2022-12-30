@@ -37,11 +37,7 @@ if(result!=null){%>
             <form action="servlet_scjlcus">              
 		            <input class="acc" type="hidden" name="waresid" value=<%=wid %>>
 					<input  class="acc" type="hidden" name="shopid" value=<%=shopid %>>
-<<<<<<< HEAD
-					<input class="acc" type="text" name="buyerid"  placeholder="客户名"><br/><%--之后系统自动获取 --%>
-=======
 					<input class="acc" type="text" name="buyerid"  placeholder="客户名"><br/>
->>>>>>> upstream/dev
 					<input class="acc" type="text" name="waresnumber" placeholder="购买数量">
 					<input class="acc" type="hidden" name="wnumber" value=<%=wnumber %>>
 					<input class="acc" type="text" name="buyeraddress" placeholder="收货地址(必填)"><br/>

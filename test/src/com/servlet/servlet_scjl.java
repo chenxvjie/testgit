@@ -66,7 +66,7 @@ public class servlet_scjl extends HttpServlet {
 	    String buyerphone = request.getParameter("buyerphone");
 	    String buyeraddress = request.getParameter("buyeraddress");
 	    
-	    SimpleDateFormat format = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
+	    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 	    String str = format.format(date);
 	    
 	    //orderid需要自动生成

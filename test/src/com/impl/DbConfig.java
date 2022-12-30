@@ -42,13 +42,12 @@ public class DbConfig {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
 		String URL="jdbc:sqlite:"+dbFilePath;
 		System.out.println("URL"+URL);
 		conn = DriverManager.getConnection(URL);
 		return conn;
 	}
-	public void create_db(String url){
+	public void create_db(String url){//数据库db文件未找到会重新创建
 		 Connection conn = null;
 		    // 1、加载驱动
 		 try {
@@ -113,8 +112,5 @@ public class DbConfig {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-=======
-		return DriverManager.getConnection(URL);
->>>>>>> upstream/dev
 	}
 }

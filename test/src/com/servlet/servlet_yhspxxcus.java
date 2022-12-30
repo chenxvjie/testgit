@@ -47,11 +47,20 @@ public class servlet_yhspxxcus extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		WaresImpl war = new WaresImpl();
 	    List<Wares> asd = new ArrayList<>();
+	    List<Wares> asd1 = new ArrayList<>();
 	    HttpSession session = request.getSession();
 	    try {
 	      asd = war.selectwares();
 	    } catch (Exception exception) {}
-	    session.setAttribute("yhspxxcus", asd);
+	    Wares w=new Wares();
+	    for(int i=0;i<asd.size();i++) {
+	    	if(asd.get(i).getWaresstate().equals("remove")) {
+	    		
+	    	}else {
+	    		asd1.add(asd.get(i));
+	    	}
+	    }
+	    session.setAttribute("yhspxxcus", asd1);
 	    request.getRequestDispatcher("cus_shop.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	  
 	}

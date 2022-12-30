@@ -1,0 +1,16 @@
+@charset "UTF-8";
+.box{
+	text-align: center;
+	margin: 20px auto;
+}
+table{
+	margin: 10px auto;	
+}
+tr{
+	width: 100px;
+}
+th,td{
+	width: 250px;
+	border: 1px solid #ccc;
+	line-height: 40px;
+}

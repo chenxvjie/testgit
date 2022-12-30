@@ -61,7 +61,7 @@ public class servlet_scjlcus extends HttpServlet {
 			    
 			    Order or = new Order();
 			    Date date = new Date();
-			    SimpleDateFormat format = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
+			    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			    String str = format.format(date);
 			    
 			    //orderid需要自动生成

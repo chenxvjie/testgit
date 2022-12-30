@@ -37,46 +37,25 @@
 		<td>交易结果</td>
 	</tr>
 	<%
-		List<Order> ord= new ArrayList<Order>();
-		ord=(List<Order>)session.getAttribute("ord");
-		Iterator oit =ord.iterator();
-		Order oqwe=null;
-		while(oit.hasNext()){
-			oqwe=new Order();
-			oqwe=(Order)oit.next();
-			%>
-				<tr>
-					<td><%=oqwe.getOrderid() %></td>
-					<td><%=oqwe.getWaresid() %></td>
-					<td><%=oqwe.getBuyerid() %></td>
-					<td><%=oqwe.getOrdertime() %></td>
-					<td><%=oqwe.getBuyerphone() %></td>
-					<td><%=oqwe.getBuyeraddress() %></td>
-					<td><%=oqwe.getOrderstate() %></td>
-				</tr>
-			<%
-		}
-	%>
-	<%
-		List<historyorder> hord= new ArrayList<historyorder>();
-		hord=(List<historyorder>)session.getAttribute("hord");
-		Iterator hit =hord.iterator();
-		historyorder hqwe=null;
-		while(hit.hasNext()){
-			hqwe=new historyorder();
-			hqwe=(historyorder)hit.next();
-			%>
-				<tr>
-					<td><%=hqwe.getHistoryid() %></td>
-					<td><%=hqwe.getWaresid() %></td>
-					<td><%=hqwe.getBuyerid() %></td>
-					<td><%=hqwe.getFinishtime() %></td>
-					<td><%=hqwe.getBuyerphone() %></td>
-					<td><%=hqwe.getBuyeraddress() %></td>
-					<td><%=hqwe.getResult() %></td>
-				</tr>
-			<%
-		}
+	List<Order> ord= new ArrayList<Order>();
+	ord=(List<Order>)session.getAttribute("ord");
+	Iterator oit =ord.iterator();
+	Order oqwe=null;
+	while(oit.hasNext()){
+		oqwe=new Order();
+		oqwe=(Order)oit.next();
+		%>
+			<tr>
+				<td><%=oqwe.getOrderid() %></td>
+				<td><%=oqwe.getWaresid() %></td>
+				<td><%=oqwe.getBuyerid() %></td>
+				<td><%=oqwe.getOrdertime() %></td>
+				<td><%=oqwe.getBuyerphone() %></td>
+				<td><%=oqwe.getBuyeraddress() %></td>
+				<td><%=oqwe.getOrderstate() %></td>
+			</tr>
+		<%
+	}
 	%>
 	</table>
 </c:if>

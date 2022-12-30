@@ -47,7 +47,7 @@ public class DbConfig {
 		conn = DriverManager.getConnection(URL);
 		return conn;
 	}
-	public void create_db(String url){
+	public void create_db(String url){//数据库db文件未找到会重新创建
 		 Connection conn = null;
 		    // 1、加载驱动
 		 try {

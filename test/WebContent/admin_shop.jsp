@@ -1,3 +1,4 @@
+<%@page import="com.vo.Classes"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="com.vo.Wares"%>
@@ -108,12 +109,44 @@ function normal(obj){
 	obj.firstElementChild.style.color="#000000";
 }
 
-
-
-
+function getCity(value,tt){
+    //获得省份下拉框的对象
+    var sltProvince=document.form1.province;
+    //获得城市下拉框的对象
+    var sltCity=document.form1.city;   
+    var sz=value.split(";");
+    //清空下拉框，仅留提示选项
+    sltCity.length=1;
+    //将城市数组中的值填充到城市下拉框中
+    for(var i=0;i<sz.length-1;i++){
+		 //Option(选项描述，选项值) 等价于 <option value="选项值" >选项描述</option>;
+        sltCity[i+1]=new Option(sz[i],sz[i]);
+    }
+}
+function change()
+{
+   var x = document.getElementById("first");
+   var y = document.getElementById("second");
+   y.options.length = 0; // 清除second下拉框的所有内容
+   var i;
+   alert("123");
+   for(i=0;i<res.length;i++)
+  {
+	   if(x.selectedIndex == i)
+	 {
+	    var j;
+	   y.options.add(new Option(res[i][1], "0",false, true));
+		for( j=2;j<res[i].length;j++)   
+	   {
+			y.options.add(new Option(res[i][j], j-1));
+			
+	   }
+	}
+  
+  }
+}
 </script>
 </head>
-
 <body class="allbody" >
 <c:if test="${empty sessionScope.user}">
 <%response.sendRedirect("admin_login.jsp"); %>
@@ -124,7 +157,8 @@ function normal(obj){
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_jl">申请记录</a>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_admin_cus">用户信息</a>
     <a class="us_a" href="admin_change.jsp">修改密码</a>
-    <a class="us_a" href="admin_waresup.jsp">上传商品</a>
+    <a class="us_a" href="servlet_fl">上传商品</a>
+    <a class="us_a" href="<%=request.getContextPath()%>/servlet_classmanage?opp=chaxun">类别管理</a>
     <a class="us_a" href="servlet_tcdl">退出登录</a>
     <hr />
     <form action="admin_shop.jsp">
@@ -138,18 +172,25 @@ function normal(obj){
 					</div>
 				</center>
 				</form>
-<%
-
 	
+<%	
 List<Wares> asd= new ArrayList<Wares>();
 String tt1=request.getParameter("inp");
-
-
+String province=request.getParameter("province");
+String[] pro=null;
+String zhu="";
+String provine="";
+if(province!=null){
+	pro = province.split(";");
+	provine=pro[pro.length-1];
+	zhu =provine+";";
+}
+String city=request.getParameter("city");
+String city1=zhu+city;
 List<Wares> asdtt= new ArrayList<Wares>();
-asdtt=(List<Wares>)session.getAttribute("yhspxxcus");
+asdtt=(List<Wares>)session.getAttribute("yhspxx");
 int ddt=0;
-if(tt1==null){
-	
+if(tt1==null){	
 }
 else {
 	for(int i=0;i<asdtt.size();i++){
@@ -190,19 +231,71 @@ if(ddt==0&&tt1!=null){
 		</script>
 	<%
 }
-	
 	int n=0;
-	%>
-	
-    
-    
-    
-    
-    
-    <div class="page-block">
+	%> 
+	<%
+	List<Wares> abcd= new ArrayList<Wares>();
+	int shu=0;
+	if(zhu!=""){
+		for(int i=0;i<asdtt.size();i++){
+			Wares qwett=new Wares();
+			qwett=asdtt.get(i);
+			if(qwett.getWaresclass().equals(city1) ){
+				abcd.add(qwett);
+				shu=shu+1;
+			}		
+		}		
+	}
+	if(zhu!="" && shu==1){
+		asd=abcd;
+	}else if(zhu!="" && shu==0){
+		%>
+		<script type="text/javascript">
+			alert("该类别商品已售完");
+		</script>
 		<%
-			String[] page_index=new String[]{"page-1", "page-2", "page-3","page-4","page-5","page-6","page-7","page-8"};
-			
+	}
+	%>
+	<div class="page-left">
+    <form action="admin_shop.jsp" name="form1" id="form1">
+	<select class="add" name="province" id="select1" onchange="getCity(this.value,this.options[this.selectedIndex].text)">
+ 			<%
+ 			if(zhu!=""&& shu==1){%>
+ 				<option value=<%=provine %>><%=provine %></option>
+ 			<%}else{%>
+ 				<option value="0">请选择主类</option>
+ 			<%}
+ 			%>
+ 			<%
+ 			List<Classes> abc =new ArrayList<>();
+			abc=(List<Classes>)session.getAttribute("fl");
+			Iterator it =abc.iterator();
+			Classes aqwe;
+			for(int i=0;i<abc.size();i++){
+				aqwe=new Classes();
+				aqwe=(Classes)it.next();
+				%>
+					<option value=<%=aqwe.getOtherclass()+aqwe.getMainclass()%>><%=aqwe.getMainclass() %></option>
+					
+				<%			
+			}
+ 			%>						
+ 		</select>	
+ 		<select name="city" id="select2" >
+ 		<%
+ 			if(zhu!=""&&shu==1){%>
+ 				<option value=<%=city %>><%=city %></option>
+ 			<%}else{%>
+ 				<option value="0">请选择副类</option>
+ 			<%}
+ 			%>
+ 		</select>
+ 	</form>
+	</div>
+    <div class="page-block">
+    
+		<%
+			String[] page_index=new String[]{"page-1", "page-2", "page-3","page-4","page-5","page-6","page-7","page-8"};		
 			int aa;
 			aa=asd.size();
 			int t;
@@ -213,14 +306,10 @@ if(ddt==0&&tt1!=null){
 				t=(aa/3)+1;
 			}
 			int op=0;
-			for(int i=0;i<t;i++){
-				
+			for(int i=0;i<t;i++){			
 				String qq=page_index[i];
-				%>
-				
-				<div class="<%=qq%>">
-					
-					
+				%>			
+				<div class="<%=qq%>">	
 					<%
 						if(i<t-1||(i==t-1&&aa%3==0)){
 							for(int j=0;j<3;j++){
@@ -277,13 +366,6 @@ if(ddt==0&&tt1!=null){
 				<%
 			}
 		%>
-	
-	
-	
-	
-	
-	
-		
 	</div>
 	<!-- 分页按钮 -->
 	<div class="page-icon">
@@ -294,11 +376,15 @@ if(ddt==0&&tt1!=null){
 		<button class="nextPage" onclick="next_click()"><img src="./img/2.png"/></button>
 		<button class="" onclick="last_click()">最后一页</button>			
 	</div>
-
     <script>
 	    var oInp = document.getElementById('inp');
 	    var oBtn = document.getElementById('btn');
-	
+	    var se1 = document.getElementById("select1");
+	    var se2 = document.getElementById("select2");
+	    var form1 = document.getElementById("form1");
+	    se2.onchange = function () {
+	    	form1.submit();
+	    }
 	    oBtn.onclick = function () {
 	        Search();
 	    }
@@ -308,16 +394,10 @@ if(ddt==0&&tt1!=null){
 	            Search();
 	        }
 	    }
-	
 	    function Search() {
 	    	self.location='admin_shop.jsp';
 	    }
 	</script>
-    
-    
-    
-    
-   
 </c:if>
 </body>
 </html>

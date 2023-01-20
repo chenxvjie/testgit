@@ -76,6 +76,14 @@
 		}
 	%>
 	</table>
+	<%
+	int flag=hord.size()+ord.size();
+	if(flag==0){
+		%>
+		<h1 style="text-align: center;">暂无历史记录</h1>
+		<% 
+	}
+	%>
 	    </div>
 </c:if>
 </body>

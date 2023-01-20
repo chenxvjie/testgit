@@ -1,12 +1,7 @@
 package com.vo;
 
-import java.sql.SQLException;
 import java.util.Iterator;
-import java.util.List;
 import java.util.regex.Pattern;
-
-import com.dao.BuyerDao;
-import com.impl.BuyerImpl;
 
 public class Iscontent {
   public String sjdl(Iterator<Seller> it, Seller temple) {
@@ -105,9 +100,7 @@ public class Iscontent {
 		  if(wa.getWaresnumber()<=0&&result.equals("发布成功")){
 			  result="商品数量必须是大于0的整数";
 		  }
-		  if(wa.getMatkering().length()>100&&result.equals("发布成功")){
-			  result="商品描述长度不能超过100";
-		  }
+		  
 	  }
 	  return result;
   }
@@ -140,74 +133,4 @@ public class Iscontent {
 	  }
 	  return result;
   }
-  public String cuszc(Buyer by) {
-	    String zhuce_result = "注册成功";
-	    BuyerDao bydao=new BuyerImpl();
-	    List<Buyer> bys = null;
-		try {
-			bys = bydao.selectbuyerpw();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	    for(Buyer b:bys){
-	    	if(b.getBuyerid().equals(by.getBuyerid())){
-	    		zhuce_result = "用户名重复";
-	    		break;
-	    	}
-	    }
-	    if (zhuce_result.equals("注册成功")) {
-	        if (by.getBuyerpw().length() < 6) {
-	        	zhuce_result = "密码长度少于6";
-	        } else if (by.getBuyerpw().length() > 12) {
-	        	zhuce_result = "密码长度超过12";
-	        } else {
-	          int kinds = 0;
-	          for (int i = 0; i < by.getBuyerpw().length(); i++) {
-	            if ('0' <= by.getBuyerpw().charAt(i) && by.getBuyerpw().charAt(i) <= '9') {
-	              kinds++;
-	              break;
-	            } 
-	          } 
-	          for (int i = 0; i < by.getBuyerpw().length(); i++) {
-	            if ('a' <= by.getBuyerpw().charAt(i) && by.getBuyerpw().charAt(i) <= 'z') {
-	              kinds++;
-	              break;
-	            } 
-	            if ('A' <= by.getBuyerpw().charAt(i) && by.getBuyerpw().charAt(i) <= 'Z') {
-	              kinds++;
-	              break;
-	            } 
-	          } 
-	          if (kinds < 2) {
-	        	  zhuce_result = "密码必须包含字母和数字";
-	          }
-	        }
-	    }
-	    if (zhuce_result.equals("注册成功")){
-	        String regEx = "[\\u4e00-\\u9fa5]";
-	        String term= by.getBuyername().replaceAll(regEx, "aa");
-	        int count= term.length()-by.getBuyername().length();
-	        for (int i = term.length()-1; i >= 0; i--) {
-	            if (!(term.charAt(i)=='a')) {
-	            	zhuce_result="买家姓名含非中文字符";
-	            	break;
-	            }
-	        }
-	        if (zhuce_result.equals("注册成功")) {
-	        	if(count<2){
-	        		zhuce_result = "买家姓名长度不能小于2";
-	        	}
-	        	else if(count>6){
-	        		zhuce_result = "买家姓名长度不能大于6";
-	        	}
-	        }
-	    }
-	    if(!isNumeric(by.getBuyerphone())&&zhuce_result.equals("注册成功")){
-	    	zhuce_result="联系电话只能包含数字";
-		}
-		if(by.getBuyerphone().length()!=11&&zhuce_result.equals("注册成功")){
-			zhuce_result="联系电话错误";
-		}
-	    return zhuce_result;
-	  }
 }

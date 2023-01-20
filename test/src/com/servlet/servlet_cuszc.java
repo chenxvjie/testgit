@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import com.impl.BuyerImpl;
 import com.vo.Buyer;
-import com.vo.Iscontent;
 
 /**
  * Servlet implementation class servlet_cuszc
@@ -55,44 +54,16 @@ public class servlet_cuszc extends HttpServlet {
 	    by.setBuyerphone(phone);
 	    by.setBuyeraddress(address);
 	    by.setBuyersex(sex);
-	    
-	    String zhuce_result="注册成功";
-	    if(by.getBuyerid().length()<1&&zhuce_result.equals("注册成功")){
-	    	zhuce_result="用户名不能为空";
-	    }
-	    if(by.getBuyerpw().length()<1&&zhuce_result.equals("注册成功")){
-	    	zhuce_result="密码不能为空";
-	    }
-	    if(by.getBuyername().length()<1&&zhuce_result.equals("注册成功")){
-	    	zhuce_result="买家姓名不能为空";
-	    }
-	    if(by.getBuyerphone().length()<1&&zhuce_result.equals("注册成功")){
-	    	zhuce_result="买家电话不能为空";
-	    }
-	    if(by.getBuyeraddress().length()<1&&zhuce_result.equals("注册成功")){
-	    	zhuce_result="买家地址不能为空";
-	    }
-	    
 	    BuyerImpl bi =new BuyerImpl();
-	    Iscontent iscontent = new Iscontent();
-	    if(zhuce_result.equals("注册成功")){
-	    	zhuce_result = iscontent.cuszc(by);
-	    }
-	    if(zhuce_result.equals("注册成功")){
-	    	try {
-	    		bi.insertbuyer(by);
-	    	} catch (SQLException e) {
-	    		e.printStackTrace();
-	    	}
+	    try {
+	      bi.insertbuyer(by);
+	    } catch (SQLException e) {
+	      e.printStackTrace();
 	    }
 	    System.out.println(by);
 	    HttpSession session = request.getSession();
-	    session.setAttribute("zhuce_result", zhuce_result);
-	    if(zhuce_result.equals("注册成功")){
-	    	request.getRequestDispatcher("cus_login1.jsp").forward(request, response);
-	    }else{
-	    	request.getRequestDispatcher("cus_zhuce.jsp").forward(request, response);
-	    }
+	    session.setAttribute("zhuce_result", "注册成功");
+	    request.getRequestDispatcher("cus_login1.jsp").forward(request, response);
 	}
 
 }

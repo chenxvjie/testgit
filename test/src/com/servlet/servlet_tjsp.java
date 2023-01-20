@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -26,13 +27,12 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 
 import com.impl.WaresImpl;
+import com.vo.Classes;
 import com.vo.Iscontent;
 import com.vo.Shop;
 import com.vo.Wares;
 
-/**
- * Servlet implementation class servlet_tjsp
- */
+
 @WebServlet("/servlet_tjsp")
 public class servlet_tjsp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -66,9 +66,32 @@ public class servlet_tjsp extends HttpServlet {
 	    String waresname=request.getParameter("waresname");
 	    String waresprice=request.getParameter("waresprice");
 	    String waresnumber=request.getParameter("waresnumber");
-	    String waresclass="无";
-	    String matketing=request.getParameter("matketing");
-	    
+	    String matketing=request.getParameter("editor");
+	    String province=request.getParameter("province");
+	     
+	     List<Classes> asd =new ArrayList<>();
+	  asd=(List<Classes>)session.getAttribute("fl");
+	  Iterator it =asd.iterator();
+	  Classes qwe;
+	  String mainclass = null;
+	  for(int i=0;i<asd.size();i++){
+	   qwe=new Classes();
+	   qwe=(Classes)it.next();
+	   if(qwe.getOtherclass().equals(province))
+	   {
+	    mainclass=qwe.getMainclass();
+	   }
+	  }
+	     
+	     
+	     System.out.println("mainclass::"+mainclass);
+	     String otherclass=request.getParameter("city");
+	     System.out.println("city::"+otherclass);
+	     
+	     
+	 
+	     String waresclass=mainclass+";"+otherclass;
+	     System.out.println("waresclass:"+waresclass);
 	    Wares wa = new Wares();
 	    wa.setWaresname(waresname);
 	    if(waresprice!=""){
@@ -87,10 +110,13 @@ public class servlet_tjsp extends HttpServlet {
     		session.setAttribute("fabu_result", fabu_result);
     		request.getRequestDispatcher("admin_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	    }
-	    wa.setShopid(shop.getShopid());
+	    wa.setShopid(1);
 	    wa.setWaresstate("putaway");
 	    wa.setWarespicture((String)session.getAttribute("fn"));
-	    wa.setWaresclass(waresclass);
+	    if(waresclass!=null) {
+	    	wa.setWaresclass(waresclass);
+	    }
+	    
 	    wa.setMatkering(matketing);
 	    System.out.println(wa+"!");
 	    

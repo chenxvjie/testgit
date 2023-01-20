@@ -15,9 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.impl.ClassesImpl;
 import com.impl.SellerImpl;
 import com.impl.ShopImpl;
 import com.impl.WaresImpl;
+import com.vo.Classes;
 import com.vo.Iscontent;
 import com.vo.Seller;
 import com.vo.Shop;
@@ -57,7 +59,13 @@ public class servlet_dl extends HttpServlet {
 	    Seller temple = new Seller();
 	    temple.setSellerid(id);
 	    temple.setSellerpw(pwd);
+	    ClassesImpl cs = new ClassesImpl();
+	    List<Classes> abc = new ArrayList<>();
 	    HttpSession session = request.getSession();
+	    try {
+	      abc = cs.selectclasses();
+	    } catch (Exception exception) {}
+	    session.setAttribute("fl", abc);
 	    System.out.println(id);
 	    System.out.println(pwd);
 	    SellerImpl sel = new SellerImpl();

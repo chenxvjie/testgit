@@ -22,6 +22,7 @@
 	<a class="us_a" href="servlet_yhspxxcus">商城首页</a>
 	<a class="us_a" href="admin_login.jsp">商家页面</a>
 	<a class="us_a" href="cus_record.jsp">个人中心</a>
+	<a class="us_a" href="servlet_custcdl">退出登录</a>
     <hr />
 		<table border="1">
 	<tr>

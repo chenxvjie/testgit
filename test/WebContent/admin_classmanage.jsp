@@ -18,6 +18,7 @@ String result=(String)session.getAttribute("class_result");
 if(result!=null){%>
 	alert("<%=result%>");
 	<%
+	session.setAttribute("class_result", null);
 }%>
 	
 </script>

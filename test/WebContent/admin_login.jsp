@@ -37,10 +37,6 @@ if(result!=null){%>
                 <input class="acc" type="password" placeholder="密码" name="pwd" value="">
                 <input class="submit" type="submit" name="submit" value="Login">
             </form>
-            <div class="fn">
-                <a href="admin_zhuce.jsp">注册账号</a>
-              
-            </div>
         </div>
     </div>
 </body>

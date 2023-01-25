@@ -308,7 +308,7 @@ if(ddt==0&&tt1!=null){
 								qwe=asd.get(op);
 								op++;
 								%>
-								<div class="article-hover" onclick="window.open('servlet_pergood_admin?wid=<%= qwe.getWaresid()%>','_self')">
+								<div class="article-hover" onclick="window.open('servlet_pergood?wid=<%= qwe.getWaresid()%>','_self')">
 									<div class="thumbnail" >
 										<img src="upload1/<%= qwe.getWarespicture()%>" alt="">
 									</div>

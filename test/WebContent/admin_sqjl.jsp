@@ -142,7 +142,6 @@ function normal(obj){
 				<%
 					Wares w=ware_list.get(i);
     				int id=w.getWaresid();
-    				if(true){
     			%>
     			<div class="spxq1">
         <div class="spxq1_1">
@@ -273,7 +272,6 @@ function normal(obj){
 	%>
 </table>
 	</div>
-	<%}%>
 		<%} %>
 	</div>
 	<!-- 分页按钮 -->

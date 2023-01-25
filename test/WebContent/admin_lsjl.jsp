@@ -60,6 +60,14 @@
 		}
 	%>
 	</table>
+	<%
+	int flag=asd.size();
+	if(flag==0){
+		%>
+		<h1 style="text-align: center;">暂无历史记录</h1>
+		<% 
+	}
+	%>
 </c:if>
 </body>
 </html>

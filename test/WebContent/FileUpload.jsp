@@ -5,7 +5,7 @@
 <head>  
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>人群计数实时识别系统</title>
+<title>图片上传</title>
 <link rel="stylesheet" href="style.css">
 
 </head>

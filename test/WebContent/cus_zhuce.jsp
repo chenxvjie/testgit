@@ -27,7 +27,7 @@ if(result!=null){%>
                 <input class="acc" type="text" placeholder="买家姓名" name="cusname">
                 <input class="acc" type="text" placeholder="买家电话" name="cusphone">
                 <input class="acc" type="text" placeholder="买家地址" name="cusaddress">
-                <input class="submit" type="submit" value="注册">
+                <input class="submit" type="submit" name="submit" value="注册">
             </form>
             
         </div>

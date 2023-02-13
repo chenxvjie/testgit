@@ -23,9 +23,17 @@
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_jl">申请记录</a>
     <a class="us_a" href="<%=request.getContextPath()%>/servlet_admin_cus">用户信息</a>
     <a class="us_a" href="admin_change.jsp">修改密码</a>
-    <a class="us_a" href="admin_waresup.jsp">上传商品</a>
+    <a class="us_a" href="servlet_fl">上传商品</a>
+    <a class="us_a" href="<%=request.getContextPath()%>/servlet_classmanage?opp=chaxun">类别管理</a>
     <a class="us_a" href="servlet_tcdl">退出登录</a>
     <hr />
+	<%
+	List<Order> ord= new ArrayList<Order>();
+	ord=(List<Order>)session.getAttribute("ord");
+	Iterator oit =ord.iterator();
+	Order oqwe=null;
+	if(ord.size()>0){
+		%>
 	<table border="1">
 	<tr>
 		<td>订单id</td>
@@ -37,13 +45,9 @@
 		<td>交易结果</td>
 	</tr>
 	<%
-	List<Order> ord= new ArrayList<Order>();
-	ord=(List<Order>)session.getAttribute("ord");
-	Iterator oit =ord.iterator();
-	Order oqwe=null;
-	while(oit.hasNext()){
-		oqwe=new Order();
-		oqwe=(Order)oit.next();
+		while(oit.hasNext()){
+			oqwe=new Order();
+			oqwe=(Order)oit.next();
 		%>
 			<tr>
 				<td><%=oqwe.getOrderid() %></td>
@@ -55,9 +59,11 @@
 				<td><%=oqwe.getOrderstate() %></td>
 			</tr>
 		<%
-	}
-	%>
+		}%>
 	</table>
+	<%}else{%>
+		<h1 style="text-align: center;">暂无历史记录</h1>
+	<%}%>
 </c:if>
 </body>
 </html>

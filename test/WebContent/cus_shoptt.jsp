@@ -12,6 +12,7 @@
 <%
 Wares w=(Wares)session.getAttribute("ware");
 int id=w.getWaresid();
+String[] picture=w.getWarespicture().split(";");
 %>
     <a class="us_a" href="servlet_yhspxxcus">商城首页</a>
     <a class="us_a" href="admin_login.jsp">商家页面</a>
@@ -19,7 +20,20 @@ int id=w.getWaresid();
     <hr />
     <div class="spxq1">
         <div class="spxq1_1">
-            <img style="width: 100%;height:100%;" src="upload1/<%= w.getWarespicture()%>">
+        	<div class="content" num="<%=picture.length %>">
+            <!-- 轮播图片 -->
+            <ul>
+            	<%for(int i=0;i<picture.length;i++){%>
+            		<li><img src="upload1/<%= picture[i]%>" alt=""></li>
+            	<%} %>
+            </ul>
+            <!-- 轮播图的点 -->
+            <ol>
+            	<%for(int i=0;i<picture.length;i++){%>
+            		<li></li>
+            	<%} %>
+            </ol>
+        	</div>   
         </div>
         <div class="spxq1_2">
             <div class="spxq1_1_1">
@@ -51,6 +65,7 @@ int id=w.getWaresid();
         <%= w.getMatkering()%>
         <div class="spxq2_1">
     </div>
-
+	</div>
+<script src="lunbotu.js"></script>
 </body>
 </html>

@@ -12,7 +12,13 @@ String result=(String)session.getAttribute("cus_dl_result");
 if(result!=null){%>
 	alert("<%=result%>");
 	<%session.setAttribute("cus_dl_result", null);
-}%>
+}
+result=(String)session.getAttribute("zhuce_result");
+if(result!=null){%>
+	alert("<%=result%>");
+	<%session.setAttribute("zhuce_result", null);
+}
+%>
 </script>
 </head>
 <body class="allbody">

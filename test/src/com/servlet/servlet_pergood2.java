@@ -77,7 +77,7 @@ public class servlet_pergood2 extends HttpServlet {
 	    }
 	    HttpSession session = request.getSession();
 	    session.setAttribute("order_result", order_result);
-	    request.getRequestDispatcher("admin_sqjl.jsp").forward(request,response);
+	    request.getRequestDispatcher("servlet_jl").forward(request,response);
 	}
 
 }

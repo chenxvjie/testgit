@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +16,6 @@ if(result!=null){%>
 }%>
 </script>
 </head>
-
 <body class="allbody">
   <%
 	String mess = (String)request.getAttribute("mess");         // 获取错误属性
@@ -37,10 +37,6 @@ if(result!=null){%>
                 <input class="acc" type="password" placeholder="密码" name="pwd" value="">
                 <input class="submit" type="submit" name="submit" value="Login">
             </form>
-            <div class="fn">
-                <a href="admin_zhuce.jsp">注册账号</a>
-              
-            </div>
         </div>
     </div>
 </body>

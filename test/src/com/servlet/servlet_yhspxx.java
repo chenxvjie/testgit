@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.impl.ClassesImpl;
 import com.impl.WaresImpl;
+import com.vo.Classes;
 import com.vo.Wares;
 
 /**
@@ -49,10 +51,24 @@ public class servlet_yhspxx extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		WaresImpl war = new WaresImpl();
 	    List<Wares> asd = new ArrayList<>();
+	    List<Wares> asd1 = new ArrayList<>();
+	    ClassesImpl cs = new ClassesImpl();
+	    List<Classes> abc = new ArrayList<>();
 	    HttpSession session = request.getSession();
+	    try {
+	      abc = cs.selectclasses();
+	    } catch (Exception exception) {}
 	    try {
 	      asd = war.selectwares();
 	    } catch (Exception exception) {}
+	    for(int i=0;i<asd.size();i++) {
+	    	if(asd.get(i).getWaresstate().equals("remove")) {
+	    		
+	    	}else {
+	    		asd1.add(asd.get(i));
+	    	}
+	    }
+	    session.setAttribute("fl", abc);
 	    session.setAttribute("yhspxx", asd);
 	    request.getRequestDispatcher("admin_shop.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	  }

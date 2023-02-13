@@ -48,6 +48,7 @@ public class FileUpload extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		this.doPost(request, response);
+		
 	}
 
 	/**
@@ -57,6 +58,7 @@ public class FileUpload extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
     	File f = new File(this.getClass().getResource("../..").getPath());
+    	System.out.println(f);
     	String str=f.getAbsolutePath();
     	try {
     		str=URLDecoder.decode(str, "UTF-8");
@@ -73,6 +75,7 @@ public class FileUpload extends HttpServlet {
     	System.out.println(str);
     	str=str+"/upload1/";
 		String fn = null;
+		String fn1 =null;
 	    try {
 	      DiskFileItemFactory factory = new DiskFileItemFactory();
 	      ServletFileUpload upload = new ServletFileUpload((FileItemFactory)factory);
@@ -89,8 +92,12 @@ public class FileUpload extends HttpServlet {
 	          String updir = str;
 	          String ext = ofn.substring(ofn.lastIndexOf("."));
 	          String fnf = UUID.randomUUID().toString();
-	          fn = String.valueOf(fnf) + ext;
-	          String df = updir + fn;//updir+"\\"+fn;
+	          if(fn != null)
+	        	  fn =fn+";"+String.valueOf(fnf) + ext;
+	          else
+	        	  fn =String.valueOf(fnf) + ext;
+	          fn1=String.valueOf(fnf) + ext;
+	          String df = updir + fn1;//updir+"\\"+fn;
 	          System.out.println(updir);
 	          System.out.println("df:" + df);
 	          fi.write(new File(df));
@@ -103,6 +110,7 @@ public class FileUpload extends HttpServlet {
 	    } 
 	    HttpSession session = request.getSession();
 	    session.setAttribute("fn", fn);
+	    System.out.println(fn);
 	    request.getRequestDispatcher("admin_waresup.jsp").forward((ServletRequest)request, (ServletResponse)response);
 	}
 

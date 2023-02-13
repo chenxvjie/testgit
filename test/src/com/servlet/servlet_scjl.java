@@ -83,12 +83,16 @@ public class servlet_scjl extends HttpServlet {
 	    Iscontent iscontent=new Iscontent();
 	    
 	    String buyit_result="购买成功";
-	    try{
-		    waresnumber = Integer.parseInt(request.getParameter("waresnumber"));
-		    or.setWaresnumber(waresnumber);
-		    } catch (NumberFormatException e) {
-		    	buyit_result="购买数量错误";
-		    	e.printStackTrace();
+	    if(request.getParameter("waresnumber").equals("")){
+	    	buyit_result="购买数量不能为空";
+	    }else{
+	    		try{
+	    	waresnumber = Integer.parseInt(request.getParameter("waresnumber"));
+	    	or.setWaresnumber(waresnumber);
+	    	} catch (NumberFormatException e) {
+	    		buyit_result="购买数量不为整数";
+	    		e.printStackTrace();
+	    	}
 	    }
 	    if(buyit_result.equals("购买成功")){
 	    	buyit_result=iscontent.buyit(or);
